@@ -13,8 +13,12 @@ public class Student {
         this.age = age;
     }
 
-    public String getName(){
-        return firstName + " " + lastName;
+    public String getFirstName(){
+        return firstName;
+    }
+
+    public String getLastName(){
+        return lastName;
     }
     
     public void setName(String firstName, String lastName) {

@@ -36,7 +36,8 @@ public class Student {
 
     ArrayList<Assignment> assignments = new ArrayList<Assignment>();
 
-    
+    //TODO: Add a way to calculate GPA from all assignments
+    //Use calcuatedGrade() from Assignment Class to do it
 
 
 }

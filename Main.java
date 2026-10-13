@@ -7,7 +7,7 @@ public class Main {
   Scanner userInput = new Scanner(System.in);
 
     public static void main(String[] args) {
-      Scanner userInput = new Scanner(System.in);
+      Main app = new Main();
       
       int input = -1;
 
@@ -16,11 +16,12 @@ public class Main {
         System.out.println("2: Add a new student");
         System.out.println("3: Create a new assignment");
         System.out.println("4: Update an existing assignment");
+        System.out.println("5: Update a Student's Grade");
         System.out.println("0: Quit Program ");
 
         System.out.print("Select an option: ");
         
-        input = userInput.nextInt();
+        input = app.userInput.nextInt();
 
         switch(input) {
           case 0:
@@ -28,17 +29,20 @@ public class Main {
             break;
           case 1:
             // Select a Student
-            selectStudent();
+            app.selectStudent();
             break;
           case 2:
             // Add a new student
-            newStudent();
+            app.newStudent();
             break;
           case 3:
             // Create a new assignment
             break;
           case 4:
             // Update an existing assignment
+            break;
+          case 5:
+            // Update a student's grade
             break;
           default:
             System.out.println("Please select a valid option");
@@ -93,11 +97,12 @@ public class Main {
     int input = -1;
 
     while (input != 0){
-        System.out.println("1: Select a student");
-        System.out.println("2: Add a new student");
-        System.out.println("3: Create a new assignment");
-        System.out.println("4: Update an existing assignment");
-        System.out.println("0: Quit Program ");
+        System.out.println("1: Get Student Info");
+        System.out.println("2: Change Student Name");
+        System.out.println("3: Change Student Age");
+        System.out.println("4: Student's GPA");
+        System.out.println("5: Grade on Specific Assignment");
+        System.out.println("0: Go Back to Main Menu");
 
         System.out.print("Select an option: ");
         
@@ -108,22 +113,48 @@ public class Main {
             System.out.println("Have a good day!");
             break;
           case 1:
-            // Select a Student
-            selectStudent();
+            System.out.println(selectedStudent.getFirstName() + " " + selectedStudent.getLastName() + ": Age" + selectedStudent.getAge());
             break;
           case 2:
-            // Add a new student
-            newStudent();
+            System.out.print("What is the new first name: ");
+            String firstname = userInput.nextLine();
+
+            System.out.print("What is the new last name: ");
+            String lastname = userInput.nextLine();
+
+            selectedStudent.setName(firstname, lastname);
+            System.out.println("Name has been changed");
             break;
           case 3:
-            // Create a new assignment
+            System.out.print("What is the new age: ");
+            int age = userInput.nextInt();
+
+            selectedStudent.setAge(age);
             break;
           case 4:
-            // Update an existing assignment
+            //TODO: Add way to calculate student GPA
+            break;
+          case 5:
+            System.out.print("What is the assignment name: ");
+            String assignmentQuery = userInput.nextLine();
+
+            for(int i = 0; i < selectedStudent.assignments.size(); i++)
+            {
+              Assignment assignment = selectedStudent.assignments.get(i);
+
+              if (assignment.getName().equalsIgnoreCase(assignmentQuery))
+              {
+                System.out.println("The assignment is worth " + assignment.getTotalPointsWorth());
+                System.out.print("How many points did the student earn: ");
+                int pointsStudentEarned = userInput.nextInt();
+
+                assignment.setPointsEarned(pointsStudentEarned);
+              }
+            }
             break;
           default:
             System.out.println("Please select a valid option");
+          }
         }
+    }
   }
-  
-}

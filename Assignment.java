@@ -39,4 +39,14 @@ public class Assignment {
     {
         this.pointsEarned = pointsEarned;
     }
+
+    public float calcuatedGrade()
+    {
+        // Calculates grade based on 0.00 - 4.00 GPA grading scheme
+        float grade;
+
+        grade = (pointsEarned / totalPointsWorth) * 4;
+
+        return grade;
+    }
 }

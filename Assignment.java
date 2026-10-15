@@ -1,11 +1,13 @@
 public class Assignment {
     private String name;
+    private String description;
     private int totalPointsWorth;
     private int pointsEarned;
 
-    public Assignment(String name, int totalPointsWorth)
+    public Assignment(String name, String description, int totalPointsWorth)
         {
             this.name = name;
+            this.description = description;
             this.totalPointsWorth = totalPointsWorth;
             pointsEarned = 0;
         }
@@ -18,6 +20,16 @@ public class Assignment {
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
 
     public int getTotalPointsWorth()
@@ -45,7 +57,7 @@ public class Assignment {
         // Calculates grade based on 0.00 - 4.00 GPA grading scheme
         float grade;
 
-        grade = (pointsEarned / totalPointsWorth) * 4;
+        grade = ((float) pointsEarned / totalPointsWorth) * 4;
 
         return grade;
     }

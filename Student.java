@@ -5,7 +5,10 @@ public class Student {
     private String firstName;
     private String lastName;
     private int age;
-    
+
+    // assignment list for each student to store their individual grades
+    ArrayList<Assignment> assignments = new ArrayList<Assignment>();
+
     public Student (String firstName, String lastName, int age)
     {
         this.firstName = firstName;
@@ -34,10 +37,55 @@ public class Student {
         age = newAge;
     }
 
-    ArrayList<Assignment> assignments = new ArrayList<Assignment>();
+    public void addAssignment(Assignment assignment)
+    {
+        assignments.add(assignment);
+    }
 
-    //TODO: Add a way to calculate GPA from all assignments
-    //Use calcuatedGrade() from Assignment Class to do it
+    public String gpa()
+    {
+        // Calculates the grade into a gpa, then spits out the correct grade letter
+        float totalgpa = 0;
+        for (Assignment assignment : assignments)
+        {
+            totalgpa += assignment.calcuatedGrade();
+        }
 
+        totalgpa = (totalgpa / assignments.size());
+        String gpaLetterAssignment;
+
+        if (totalgpa < 1)
+        {
+            gpaLetterAssignment = (firstName + " has an F: GPA = " + totalgpa);
+            return gpaLetterAssignment;
+        }
+
+        if (totalgpa < 2)
+        {
+            gpaLetterAssignment = (firstName + " has a D: GPA = " + totalgpa);
+            return gpaLetterAssignment;
+        }
+
+        if (totalgpa < 3)
+        {
+            gpaLetterAssignment = (firstName + " has a C: GPA = " + totalgpa);
+            return gpaLetterAssignment;
+        }
+
+        if (totalgpa < 3.5)
+        {
+            gpaLetterAssignment = (firstName + " has a B: GPA = " + totalgpa);
+            return gpaLetterAssignment;
+        }
+
+        if (totalgpa <= 4)
+        {
+            gpaLetterAssignment = (firstName + " has an A: GPA = " + totalgpa);
+            return gpaLetterAssignment;
+        }
+
+        String errorMessage = "You shouldn't have gotten this message. Something went wrong with the GPA function for Student.java";
+        return errorMessage;
+    }
 
 }
